@@ -44,9 +44,18 @@ const colors = {
     },
   };
 
+  export const breakpoints = {
+    xs: 0, //Extra Small
+    sm: 480, //Small
+    md: 768, //Medium
+    lg: 992, //Large
+    xl: 1200, //Extra Large
+  };
+
 export default {
     colors,
     typographyVariants,
+    breakpoints,
     borderRadius: '12px',
     fontFamily: '\'Rubik\',san-serif',
     transition: '200ms ease-in-out',

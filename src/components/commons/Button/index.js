@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import get from 'lodash/get'
 import { TextStyledVariant } from '../../foundation/Text';
+import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 
 /*
     Temos aqui um modelo dinamico tanto da flexibilização da propriedade ghost (Fundo Transparente), 
@@ -40,11 +41,18 @@ export const Button = styled.button`
         juntamente com a corpassada no objeto.
     */
 
-    ${TextStyledVariant.smallestException}
-
     ${({ghost}) => (ghost ? ButtonGhost : ButtonDefault)}
     &:hover,
     &:focus{
         opacity: .5;
     }
+
+    ${breakpointsMedia({
+    xs: css`
+      ${TextStyledVariant.smallestException}
+    `,
+    md: css`
+     ${TextStyledVariant.paragrapth1}
+    `
+    })};
 `;
