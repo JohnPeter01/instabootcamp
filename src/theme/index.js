@@ -1,4 +1,4 @@
-
+import { typographyVariants } from './TypographyVariants'
 const colors = {
     modes: {
       light:{
@@ -46,6 +46,7 @@ const colors = {
 
 export default {
     colors,
+    typographyVariants,
     borderRadius: '12px',
     fontFamily: '\'Rubik\',san-serif',
     transition: '200ms ease-in-out',

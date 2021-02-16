@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import get from 'lodash/get'
+import { TextStyledVariant } from '../../foundation/Text';
 
 /*
     Temos aqui um modelo dinamico tanto da flexibilização da propriedade ghost (Fundo Transparente), 
@@ -38,6 +39,8 @@ export const Button = styled.button`
         Esse if é aplicado a cada botão asplicando de forma dinamica a propriedade ghost 
         juntamente com a corpassada no objeto.
     */
+
+    ${TextStyledVariant.smallestException}
 
     ${({ghost}) => (ghost ? ButtonGhost : ButtonDefault)}
     &:hover,

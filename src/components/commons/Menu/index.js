@@ -1,5 +1,6 @@
 import React from 'react';
 import { Logo } from '../../../theme/Logo';
+import  Text  from '../../foundation/Text';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';
 
@@ -25,28 +26,28 @@ export default function Menu(){
     ]
   return(
     <MenuWrapper>
-      <MenuWrapper.LeftSide>
-        <Logo/>
+      <MenuWrapper.LeftSide> {/* MenuWrapper.LeftSide */}
+        <Logo />
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide as="ul"> {/* MenuWrapper.CentralSide */}
         {links.map((link) => (
           //Sempre que tiver uma Li é necessario ter um indetificador unico para um elemento
           //, mesmo que não haja diferença de comportamento.
           <li key={link.url}> 
-            <a href={link.url}>
+            <Text variant="smallestException" tag="a" href={link.url}>
               {link.nome}
-            </a>
+            </Text>
           </li>
         ))}
       </MenuWrapper.CentralSide>
-      <MenuWrapper.RightSide>
-        <Button ghost variant="light.secondary.main">
-            Entrar
+      <MenuWrapper.RightSide> {/* MenuWrapper.RightSide */}
+        <Button type="button" ghost variant="light.secondary.main">
+          Entrar
         </Button>
-        <Button variant="light.primary.main">
-            Cadastrar
+        <Button type="button" variant="light.primary.main">
+          Cadastrar
         </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
-  )
+  );
 }
