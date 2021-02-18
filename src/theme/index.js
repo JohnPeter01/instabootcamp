@@ -37,12 +37,10 @@ const colors = {
               contrastText: '#fff',
             },
           },
-      },
-      dark: {
-          main: '#030506'
-      },
-    },
-  };
+        },
+      dark: {},
+  }
+};
 
   export const breakpoints = {
     xs: 0, //Extra Small
@@ -53,10 +51,10 @@ const colors = {
   };
 
 export default {
-    colors,
-    typographyVariants,
-    breakpoints,
-    borderRadius: '12px',
-    fontFamily: '\'Rubik\',san-serif',
-    transition: '200ms ease-in-out',
-  }
+  colors,
+  typographyVariants,
+  breakpoints,
+  borderRadius: '12px',
+  transition: '200ms ease-in-out',
+  fontFamily: '\'Rubik\', sans-serif',
+};

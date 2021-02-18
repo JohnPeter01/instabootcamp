@@ -1,7 +1,7 @@
 
 import styled, { css } from "styled-components";
 import { breakpointsMedia } from "../../../../theme/Utils/breakpointsMedia";
-import { TextStyledVariant } from "../../../foundation/Text";
+import { TextStyleVariants } from "../../../foundation/Text";
 /*
     Essa é tanto uma prefencia quanto uma boa pratica, separar as tags de estilos em um arquivo separado.
     Em uma pasta styles criar um arquivo com o nome da tag criada.
@@ -85,10 +85,10 @@ MenuWrapper.CentralSide = styled.div`
       transition: 200ms ease-in-out;
       ${breakpointsMedia({
         xs:css`
-          ${TextStyledVariant.smallestException}
+          ${TextStyleVariants.smallestException}
         `,
         md: css`
-          ${TextStyledVariant.paragrapth1}
+          ${TextStyleVariants.paragrapth1}
         `,
     })}
       &:hover,
