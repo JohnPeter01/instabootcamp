@@ -8,6 +8,7 @@ export const Box = styled.div`
   ${propToStyle('justifyContent')}
   ${propToStyle('flexWrap')}
   ${propToStyle('backgroundImage')}
+  ${propToStyle('backgroundColor')}
   ${propToStyle('backgroundRepeat')}
   ${propToStyle('backgroundPosition')}
 `;
