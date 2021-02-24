@@ -4,9 +4,10 @@ import { TextStyleVariants } from '../../foundation/Text';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { propToStyle } from '../../../theme/Utils/propToStyle';
 /*
-    Temos aqui um modelo dinamico tanto da flexibilização da propriedade ghost (Fundo Transparente), 
-    quanto da cor utilizada, deixando mais componentizado cada propriedade, ou seja podendo,combinar
-    de forma mais dinamica cor e fundo.
+    Temos aqui um modelo dinamico tanto da
+    flexibilização da propriedade ghost (Fundo Transparente),
+    quanto da cor utilizada, deixando mais componentizado cada propriedade,
+    ou seja podendo,combinar de forma mais dinamica cor e fundo.
 */
 
 const ButtonGhost = css`
