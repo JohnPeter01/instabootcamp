@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 import { TextStyleVariants } from '../../foundation/Text';
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
-import { propToStyle } from '../../../theme/utils/propToStyle';
+import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
+import { propToStyle } from '../../../theme/Utils/propToStyle';
 /*
     Temos aqui um modelo dinamico tanto da flexibilização da propriedade ghost (Fundo Transparente), 
     quanto da cor utilizada, deixando mais componentizado cada propriedade, ou seja podendo,combinar

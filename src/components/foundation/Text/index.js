@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import { propToStyle } from '../../../theme/utils/propToStyle';
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
+import { propToStyle } from '../../../theme/Utils/propToStyle';
+import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 
 const paragraph1 = css`
   ${({ theme }) => css`
