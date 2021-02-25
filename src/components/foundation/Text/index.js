@@ -40,12 +40,30 @@ export const TextStyleVariants = {
       `,
   })}
   `,
+    title: css`
+    ${({ theme }) => css`
+      font-size: ${theme.typographyVariants.titleXS.fontSize};
+      font-weight: ${theme.typographyVariants.titleXS.fontWeight};
+      line-height: ${theme.typographyVariants.titleXS.lineHeight};
+    `}
+    ${breakpointsMedia({
+    md: css`
+        ${({ theme }) => css`
+          font-size: ${theme.typographyVariants.title.fontSize};
+          font-weight: ${theme.typographyVariants.title.fontWeight};
+          line-height: ${theme.typographyVariants.title.lineHeight};
+        `}
+      `,
+  })}
+  `,
 };
 
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
   ${propToStyle('textAlign')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('margin')}
 `;
 
 export function Text({
@@ -72,7 +90,7 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']),
   variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
 };
