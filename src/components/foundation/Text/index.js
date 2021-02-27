@@ -40,22 +40,6 @@ export const TextStyleVariants = {
       `,
   })}
   `,
-    title: css`
-    ${({ theme }) => css`
-      font-size: ${theme.typographyVariants.titleXS.fontSize};
-      font-weight: ${theme.typographyVariants.titleXS.fontWeight};
-      line-height: ${theme.typographyVariants.titleXS.lineHeight};
-    `}
-    ${breakpointsMedia({
-    md: css`
-        ${({ theme }) => css`
-          font-size: ${theme.typographyVariants.title.fontSize};
-          font-weight: ${theme.typographyVariants.title.fontWeight};
-          line-height: ${theme.typographyVariants.title.lineHeight};
-        `}
-      `,
-  })}
-  `,
 };
 
 const TextBase = styled.span`
@@ -87,6 +71,7 @@ export function Text({
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
 
 Text.propTypes = {

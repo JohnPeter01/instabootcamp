@@ -1,12 +1,12 @@
-
-import styled, { css } from "styled-components";
-import { breakpointsMedia } from "../../../../theme/Utils/breakpointsMedia";
-import { TextStyleVariants } from "../../../foundation/Text";
+import styled, { css } from 'styled-components';
+import { breakpointsMedia } from '../../../../theme/Utils/breakpointsMedia';
+import { TextStyleVariants } from '../../../foundation/Text';
 /*
-    Essa é tanto uma prefencia quanto uma boa pratica, separar as tags de estilos em um arquivo separado.
-    Em uma pasta styles criar um arquivo com o nome da tag criada.
+    Essa é tanto uma prefencia quanto uma boa pratica, separar as tags
+    de estilos em um arquivo separado.Em uma pasta styles criar um arquivo
+     com o nome da tag criada.
 */
-export const MenuWrapper =  styled.nav`
+export const MenuWrapper = styled.nav`
   font-family: 'Rubik', sans-serif;
   display: flex;
   align-items: center;
@@ -26,10 +26,10 @@ export const MenuWrapper =  styled.nav`
       padding: 0 16px;
       max-width: 768px;
     `,
-    lg:css`
+    lg: css`
       max-width:1160px;
     `,
-    xl:css`
+    xl: css`
       max-width:1222px;
     `,
   })}
@@ -75,7 +75,7 @@ MenuWrapper.CentralSide = styled.div`
       padding-top: 0;
       padding-bottom:0;
     `,
-    })}
+  })}
 
     a{
       text-align: center;
@@ -84,13 +84,13 @@ MenuWrapper.CentralSide = styled.div`
       color: #88989E;
       transition: 200ms ease-in-out;
       ${breakpointsMedia({
-        xs:css`
+    xs: css`
           ${TextStyleVariants.smallestException}
         `,
-        md: css`
+    md: css`
           ${TextStyleVariants.paragrapth1}
         `,
-    })}
+  })}
       &:hover,
       &:focus{
         font-weight: 500;
@@ -106,9 +106,9 @@ MenuWrapper.RightSide = styled.div`
     flex: 1;
     justify-content: flex-end;
     ${breakpointsMedia({
-        md: css`
+    md: css`
           order:initial
         `,
-    })}
+  })}
     
 `;

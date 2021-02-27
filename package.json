@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
-    "start": "next start"
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "eslint --ignore-path .gitignore . --fix"
   },
   "dependencies": {
+    "@crello/react-lottie": "^0.0.11",
     "framer-motion": "^3.7.0",
     "lodash": "^4.17.20",
     "next": "latest",

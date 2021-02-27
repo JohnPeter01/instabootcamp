@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { propToStyle } from "../../../../theme/Utils/propToStyle";
+import styled from 'styled-components';
+import { propToStyle } from '../../../../theme/Utils/propToStyle';
 
 export const Box = styled.div`
   ${propToStyle('flex')}

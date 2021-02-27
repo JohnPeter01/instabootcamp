@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Logo } from '../../../theme/Logo';
 import { Text } from '../../foundation/Text';
@@ -12,10 +11,14 @@ import { MenuWrapper } from './styles/MenuWrapper';
 export default function Menu() {
   return (
     <MenuWrapper>
-      <MenuWrapper.LeftSide> {/* MenuWrapper.LeftSide */}
+      <MenuWrapper.LeftSide>
+        {' '}
+        {/* MenuWrapper.LeftSide */}
         <Logo />
       </MenuWrapper.LeftSide>
-      <MenuWrapper.CentralSide as="ul"> {/* MenuWrapper.CentralSide */}
+      <MenuWrapper.CentralSide as="ul">
+        {' '}
+        {/* MenuWrapper.CentralSide */}
         {[
           { url: '/', name: 'Home' },
           { url: '/faq', name: 'Perguntas Frequentes' },
@@ -28,7 +31,9 @@ export default function Menu() {
           </li>
         ))}
       </MenuWrapper.CentralSide>
-      <MenuWrapper.RightSide> {/* MenuWrapper.RightSide */}
+      <MenuWrapper.RightSide>
+        {' '}
+        {/* MenuWrapper.RightSide */}
         <Button type="button" ghost variant="light.secondary.main">
           Entrar
         </Button>
