@@ -1,10 +1,12 @@
-import Footer from "../src/components/commons/Footer";
-import Menu from "../src/components/commons/Menu";
-import { Text } from "../src/components/foundation/Text";
-import { Button } from "../src/components/commons/Button";
-import { Grid } from "../src/components/foundation/Layout/Grid";
-import { Box } from "../src/components/foundation/Layout/Box";
-import Modal from "../src/components/commons/Modal";
+import React from 'react';
+import Footer from '../src/components/commons/Footer';
+import Menu from '../src/components/commons/Menu';
+import { Text } from '../src/components/foundation/Text';
+import { Button } from '../src/components/commons/Button';
+import { Grid } from '../src/components/foundation/Layout/Grid';
+import { Box } from '../src/components/foundation/Layout/Box';
+import Modal from '../src/components/commons/Modal';
+import FormCadastro from '../src/components/patterns/FormCadastro';
 
 export default function Home() {
   const [isModalOpen, setModalState] = React.useState(false);
@@ -26,15 +28,18 @@ export default function Home() {
         }}
       >
         {(propsDoModal) => (
-          <Box
-            backgroundColor="white"
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...propsDoModal}
-          >
-            <div>
-              Nosso Modal Maravilhoso
-            </div>
-          </Box>
+
+          <FormCadastro propsDoModal={propsDoModal} />
+
+          // <Box
+          //   backgroundColor="white"
+          //   // eslint-disable-next-line react/jsx-props-no-spreading
+          //   {...propsDoModal}
+          // >
+          //   <div>
+          //     Nosso Modal Maravilhoso
+          //   </div>
+          // </Box>
         )}
       </Modal>
 
@@ -42,8 +47,8 @@ export default function Home() {
 
       <Grid.Container
         marginTop={{
-          xs: "32px",
-          md: "75px",
+          xs: '32px',
+          md: '75px',
         }}
       >
         <Grid.Row>
@@ -61,8 +66,8 @@ export default function Home() {
                 tag="h1"
                 color="light.tertiary.main"
                 textAlign={{
-                  xs: "center",
-                  md: "left",
+                  xs: 'center',
+                  md: 'left',
                 }}
               >
                 Compartilhe momentos e conecte-se com amigos
@@ -72,8 +77,8 @@ export default function Home() {
                 tag="p"
                 color="light.tertiary.light"
                 textAlign={{
-                  xs: "center",
-                  md: "left",
+                  xs: 'center',
+                  md: 'left',
                 }}
               >
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -84,11 +89,11 @@ export default function Home() {
               <Button
                 variant="light.primary.main"
                 margin={{
-                  xs: "auto",
-                  md: "initial",
+                  xs: 'auto',
+                  md: 'initial',
                 }}
                 display="block"
-                onClick={(event) => {
+                onClick={() => {
                   setModalState(!isModalOpen);
                 }}
               >
@@ -98,7 +103,8 @@ export default function Home() {
           </Grid.Col>
           <Grid.Col value={{ xs: 12, md: 6 }}>
             <img
-              style={{ display: "block", margin: "auto" }}
+              alt=""
+              style={{ display: 'block', margin: 'auto' }}
               src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
             />
           </Grid.Col>

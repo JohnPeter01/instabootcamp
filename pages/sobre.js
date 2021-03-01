@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default function AboutPage() {
   return (
     <div>
@@ -8,5 +7,5 @@ export default function AboutPage() {
         Página Sobre
       </h1>
     </div>
-  )
+  );
 }

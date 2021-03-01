@@ -1,5 +1,7 @@
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 
 const ModalWrapper = styled.div`
   display: flex;
@@ -13,6 +15,8 @@ const ModalWrapper = styled.div`
   bottom: 0;
   margin: auto;
   overflow: scroll;
+  transition: .3s;
+  z-index: 100;
   ${({ isOpen }) => {
     if (isOpen) {
       return css`
@@ -27,28 +31,55 @@ const ModalWrapper = styled.div`
   }}
 `;
 
-function Modal({isOpen, onClose,children}){
-  return(
+const LockScroll = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
+
+function Modal({ isOpen, onClose, children }) {
+  return (
     <ModalWrapper
-      isOpen = {isOpen}
-      onClick = {() =>{
+      isOpen={isOpen}
+      onClick={(event) => {
         const isSafeArea = event.target.closest('[data-modal-safe-area="true"]');
         if (!isSafeArea) {
           onClose();
         }
       }}
     >
-      {children({
-        'data-modal-safe-area': 'true',
-      })}
+      {isOpen && <LockScroll />}
+      <motion.div
+        variants={{
+          open: {
+            x: 0,
+          },
+          closed: {
+            x: '100%',
+          },
+        }}
+        animate={isOpen ? 'open' : 'closed'}
+        transition={{
+          duration: 0.5,
+        }}
+        style={{
+          display: 'flex',
+          flex: 1,
+          justifyContent: 'flex-end',
+        }}
+      >
+        {children({
+          'data-modal-safe-area': 'true',
+        })}
+      </motion.div>
     </ModalWrapper>
-  )
+  );
 }
 
 Modal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    children: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
-  };
-  
-  export default Modal;
+  isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default Modal;

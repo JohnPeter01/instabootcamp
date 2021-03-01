@@ -46,6 +46,8 @@ const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
   ${propToStyle('textAlign')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('margin')}
 `;
 
 export function Text({
@@ -69,10 +71,11 @@ export function Text({
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
 
 Text.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']),
   variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
 };
