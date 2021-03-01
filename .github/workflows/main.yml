@@ -26,5 +26,7 @@ jobs:
           node-version: '14.15.0'
 
       # Runs a single command using the runners shell
+      - name: Executando processo Install de dependencias
+        run: yarn install
       - name: Executando processo de Lint
         run: yarn lint
