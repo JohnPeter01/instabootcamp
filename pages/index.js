@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Footer from '../src/components/commons/Footer';
 import Menu from '../src/components/commons/Menu';
 import { Text } from '../src/components/foundation/Text';
