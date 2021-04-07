@@ -28,22 +28,13 @@ export default function Home() {
         }}
       >
         {(propsDoModal) => (
-
           <FormCadastro propsDoModal={propsDoModal} />
-
-          // <Box
-          //   backgroundColor="white"
-          //   // eslint-disable-next-line react/jsx-props-no-spreading
-          //   {...propsDoModal}
-          // >
-          //   <div>
-          //     Nosso Modal Maravilhoso
-          //   </div>
-          // </Box>
         )}
       </Modal>
 
-      <Menu />
+      <Menu
+        onCadastrarClick={() => setModalState(true)}
+      />
 
       <Grid.Container
         marginTop={{

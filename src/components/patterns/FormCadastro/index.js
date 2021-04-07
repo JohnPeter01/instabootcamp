@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Lottie } from '@crello/react-lottie';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -191,7 +192,3 @@ export default function FormCadastro({ propsDoModal }) {
     </Grid.Row>
   );
 }
-
-FormCadastro.propTypes = {
-  propsDoModal: PropTypes.node.isRequired,
-};
