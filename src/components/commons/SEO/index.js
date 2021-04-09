@@ -1,8 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 
-export default function SEO() {
-  const title = 'Instalura - Projeto Base do Alura Bootcamp JAMStack';
+export default function SEO(headTitle) {
+  const hasHeadTitle = Boolean(headTitle);
+  const baseTitle = 'Instalura - Projeto Base do Alura Bootcamp JAMStack';
+  const title = hasHeadTitle
+    ? (`${headTitle} | ${baseTitle}`)
+    : baseTitle;
+
   const description = 'Aprenda Programação, Front-end, Data Science, UX, DevOps, Marketing, Inovação e Gestão na maior plataforma de tecnologia do Brasil';
   const img = 'https://www.alura.com.br/assets/img/alura-share.1617727198.png';
   const urlBase = 'https://www.alura.com.br/';

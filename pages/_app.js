@@ -16,7 +16,6 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <SEO />
 
       <ThemeProvider theme={theme}>
         <GlobalStyle />
