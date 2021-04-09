@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Footer from '../commons/Footer';
-import Menu from '../commons/Menu';
-import Modal from '../commons/Modal';
-import { Box } from '../foundation/Layout/Box';
-import FormCadastro from '../patterns/FormCadastro';
-import SEO from '../commons/SEO';
+import Footer from '../../commons/Footer';
+import Menu from '../../commons/Menu';
+import Modal from '../../commons/Modal';
+import { Box } from '../../foundation/Layout/Box';
+import FormCadastro from '../../patterns/FormCadastro';
+import SEO from '../../commons/SEO';
 
 export const WebsitePageContext = React.createContext({
   toggleModalCadastro: () => {},

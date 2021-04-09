@@ -1,7 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
-export default function SEO(headTitle) {
+export default function SEO({ headTitle }) {
   const hasHeadTitle = Boolean(headTitle);
   const baseTitle = 'Instalura - Projeto Base do Alura Bootcamp JAMStack';
   const title = hasHeadTitle
@@ -34,3 +35,11 @@ export default function SEO(headTitle) {
     </Head>
   );
 }
+
+SEO.defaultProps = {
+  headTitle: '',
+};
+
+SEO.propTypes = {
+  headTitle: PropTypes.string,
+};
