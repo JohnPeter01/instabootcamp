@@ -1,10 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
-import PropTypes from 'prop-types';
-import theme from '../src/theme';
-import GlobalStyle from '../src/theme/GlobalStyle';
 
+// eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -15,15 +13,7 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </>
   );
 }
-App.propTypes = {
-  Component: PropTypes.node.isRequired,
-  pageProps: PropTypes.node.isRequired,
-};
