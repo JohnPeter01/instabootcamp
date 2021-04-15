@@ -9,7 +9,8 @@
     "lint": "eslint --ignore-path .gitignore .",
     "commit": "cz",
     "commit-all": "git add . && cz",
-    "test:integration:open": "cypress open"
+    "test:integration:open": "cypress open",
+    "test:integration": "cypress run --headless"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
