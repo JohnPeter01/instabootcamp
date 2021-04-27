@@ -49,7 +49,7 @@ const colors = {
           color: '#28a745',
           contrastText: '#fff',
         },
-      }
+      },
     },
     dark: {},
   },
