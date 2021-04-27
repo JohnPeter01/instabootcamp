@@ -18,14 +18,14 @@ async function HttpClient(url, { headers, body, ...options }) {
       throw new Error('Falha em pegar os dados do servidor :(');
     });
 }
-console.log('isStagingEnv',isStagingEnv);
+console.log('isStagingEnv', isStagingEnv);
 const BASE_URL = isStagingEnv
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
   : 'https://instalura-api-git-master-omariosouto.vercel.app';
 
 export const loginService = {
-  async login({ username, password }) {
-    return HttpClient(`${BASE_URL}/api/login`, {
+  async login({ username, password }, setCookieModule = setCookie, httpClientModule = HttpClient) {
+    return httpClientModule(`${BASE_URL}/api/login`, {
       method: 'POST',
       body: {
         username, // 'omariosouto'
@@ -35,10 +35,13 @@ export const loginService = {
       .then((respostaConvertida) => {
         // Salvar o Token
         // Escrever os testes
-        console.log(respostaConvertida);
         const { token } = respostaConvertida.data;
+        const hasToken = token;
+        if (!hasToken) {
+          throw new Error('Failed to Login');
+        }
         const DAY_IN_SECONDS = 86400;
-        setCookie(null, 'APP_TOKEN', token, {
+        setCookieModule(null, 'APP_TOKEN', token, {
           path: '/',
           maxAge: DAY_IN_SECONDS * 7,
         });
@@ -46,7 +49,7 @@ export const loginService = {
         return { token };
       });
   },
-  logout() {
-    destroyCookie(null, 'APP_TOKEN');
+  async logout(destroyCookieModule = destroyCookie) {
+    destroyCookieModule(null, 'APP_TOKEN');
   },
 };
