@@ -12,7 +12,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:integration:open": "cypress open",
-    "test:integration": "cypress run --headless"
+    "test:integration": "cypress run --headless",
+    "test:integration:build": "start-server-and-test build/start http-get://localhost:3000 test:integration",
+    "build/start": "yarn build && yarn start"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
@@ -50,7 +52,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "jest-canvas-mock": "^2.3.1",
-    "jest-styled-components": "^7.0.3"
+    "jest-styled-components": "^7.0.3",
+    "start-server-and-test": "^1.12.1"
   },
   "husky": {
     "hooks": {
