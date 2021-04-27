@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`propToStyle() when recives an argument with breakpoints renders only the recived ones 1`] = `
+exports[`propToStyle() renders only one breakpoint resolution renders only the recived ones 1`] = `
 Array [
   Array [
     "@media only screen and (min-width:",
@@ -12,7 +12,7 @@ Array [
 ]
 `;
 
-exports[`propToStyle() when recives an argument with breakpoints renders two or more breakpoints resolution 1`] = `
+exports[`propToStyle() renders only one breakpoint resolution renders two or more breakpoints resolution 1`] = `
 Array [
   Array [
     "@media only screen and (min-width:",
