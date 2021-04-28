@@ -21,7 +21,6 @@ describe('<FormLogin />', () => {
           onSubmit={onSubmit}
         />,
       ));
-      screen.debug();
       expect(screen.getByRole('button')).toBeDisabled();
 
       const inputUsuario = screen.getByPlaceholderText('Usuário');
@@ -50,7 +49,7 @@ describe('<FormLogin />', () => {
 
       await waitFor(() => screen.getByRole('alert'));
 
-      expect(screen.getByRole('alert')).toHaveTextContent('Preencha ao menos 3 caracteres');
+      expect(screen.getByRole('alert')).toHaveTextContent('Preencha ao menos 4 caracteres');
     });
   });
 });

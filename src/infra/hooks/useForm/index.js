@@ -12,7 +12,7 @@ function formatErrors(yupErrorsInner = []) {
   }, {});
 }
 
-export function useForm({ initialValues, onSubmit, validateSchema }) {
+export function useForm({ initialValues, onSubmit, validateSchema, }) {
   const [values, setValues] = React.useState(initialValues);
   const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [errors, setErrors] = React.useState({});
@@ -20,7 +20,7 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
 
   async function validateValues(currentValues) {
     try {
-      validateSchema(currentValues);
+      await validateSchema(currentValues);
       setErrors({});
       setIsFormDisabled(false);
     } catch (err) {
@@ -31,9 +31,9 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
   }
 
   React.useEffect(() => {
-    validateValues()
+    validateValues(values)
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }, [values]);
 
@@ -44,12 +44,12 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
       onSubmit(values);
     },
     handleChange(event) {
-      const fielName = event.target.getAttribute('name');
+      const fieldName = event.target.getAttribute('name');
       const { value } = event.target;
 
       setValues((currentValues) => ({
         ...currentValues,
-        [fielName]: value,
+        [fieldName]: value,
       }));
     },
     isFormDisabled,

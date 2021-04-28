@@ -18,7 +18,6 @@ async function HttpClient(url, { headers, body, ...options }) {
       throw new Error('Falha em pegar os dados do servidor :(');
     });
 }
-console.log('isStagingEnv', isStagingEnv);
 const BASE_URL = isStagingEnv
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
   : 'https://instalura-api-git-master-omariosouto.vercel.app';

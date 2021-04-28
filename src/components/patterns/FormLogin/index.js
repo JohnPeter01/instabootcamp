@@ -11,11 +11,11 @@ const loginSchema = yup.object().shape({
   usuario: yup
     .string()
     .required('Usuário é obrigatorio')
-    .min(4, 'Preencha pelo menos 4 caracteres.'),
+    .min(4, 'Preencha ao menos 4 caracteres.'),
   senha: yup
     .string()
     .required()
-    .min(8, 'Preencha pelomenos  8 carcteres'),
+    .min(8, 'Preencha ao menos  8 carcteres'),
 });
 
 export default function LoginForm({ onSubmit }) {
