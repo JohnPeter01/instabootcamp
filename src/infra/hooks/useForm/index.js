@@ -12,7 +12,7 @@ function formatErrors(yupErrorsInner = []) {
   }, {});
 }
 
-export function useForm({ initialValues, onSubmit, validateSchema, }) {
+export function useForm({ initialValues, onSubmit, validateSchema }) {
   const [values, setValues] = React.useState(initialValues);
   const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [errors, setErrors] = React.useState({});
