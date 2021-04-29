@@ -10,7 +10,7 @@ export default function AboutScreen({ messages }) {
       display="flex"
       flexDirection="column"
       flex={1}
-    > 
+    >
       <Grid.Container>
         <Grid.Row
           marginTop={{ xs: '32px', md: '120px' }}
