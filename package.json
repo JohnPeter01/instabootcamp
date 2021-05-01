@@ -52,7 +52,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "jest-canvas-mock": "^2.3.1",
-    "jest-styled-components": "^7.0.3",
+    "jest-styled-components": "^7.0.4",
     "start-server-and-test": "^1.12.1"
   },
   "husky": {
