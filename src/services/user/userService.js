@@ -17,8 +17,11 @@ export const userService = {
         },
       });
       return {
-        user: {
-          totalLikes: 100,
+        userInfo: {
+          bio: 'A wholesome person responsible for the best movies ever.',
+          totalPosts: 234,
+          totalFollowing: 22000,
+          totalFollowers: 134000,
         },
         posts: response.data,
       };

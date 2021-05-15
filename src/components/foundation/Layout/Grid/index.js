@@ -39,111 +39,94 @@ const Col = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
- 
- ${function valueF({ value }) {
+  ${({ value }) => {
     if (typeof value === 'number') {
       return css`
-            flex-grow: 0;
-            flex-shrink: 0;
-            flex-basis: ${(100 * value) / 12}%;
-            max-width: ${(100 * value) / 12}%;
-         `;
+        flex: 0 0 ${(100 * value) / 12}%;
+        max-width: ${(100 * value) / 12}%;
+      `;
     }
     return breakpointsMedia({
-      xs: value?.xs
-        ? css`
-                flex-grow: 0;
-                flex-shrink: 0;
-                flex-basis: ${(100 * value.xs) / 12}%;
-                max-width: ${(100 * value.xs) / 12}%;
-            `
-        : '',
-
-      sm: value?.sm
-        ? css`
-                flex-grow: 0;
-                flex-shrink: 0;
-                flex-basis: ${(100 * value.sm) / 12}%;
-                max-width: ${(100 * value.sm) / 12}%;
-            `
-        : '',
-
-      md: value?.md
-        ? css`
-                flex-grow: 0;
-                flex-shrink: 0;
-                flex-basis: ${(100 * value.md) / 12}%;
-                max-width: ${(100 * value.md) / 12}%;
-            `
-        : '',
-
-      lg: value?.lg
-        ? css`
-                flex-grow: 0;
-                flex-shrink: 0;
-                flex-basis: ${(100 * value.lg) / 12}%;
-                max-width: ${(100 * value.lg) / 12}%;
-            `
-        : '',
-
-      xl: value?.xl
-        ? css`
-                flex-grow: 0;
-                flex-shrink: 0;
-                flex-basis: ${(100 * value.xl) / 12}%;
-                max-width: ${(100 * value.xl) / 12}%;
-            `
-        : '',
-
+      ...(value.xs && {
+        xs: css`
+          flex: 0 0 ${(100 * value.xs) / 12}%;
+          max-width: ${(100 * value.xs) / 12}%;
+        `,
+      }),
+      ...(value.sm && {
+        sm: css`
+          flex: 0 0 ${(100 * value.sm) / 12}%;
+          max-width: ${(100 * value.sm) / 12}%;
+        `,
+      }),
+      ...(value.md && {
+        md: css`
+          flex: 0 0 ${(100 * value.md) / 12}%;
+          max-width: ${(100 * value.md) / 12}%;
+        `,
+      }),
+      ...(value.lg && {
+        lg: css`
+          flex: 0 0 ${(100 * value.lg) / 12}%;
+          max-width: ${(100 * value.lg) / 12}%;
+        `,
+      }),
+      ...(value.xl && {
+        xl: css`
+          flex: 0 0 ${(100 * value.xl) / 12}%;
+          max-width: ${(100 * value.xl) / 12}%;
+        `,
+      }),
     });
   }}
-
- ${function off({ offset }) {
-    if (typeof value === 'number') {
+  ${({ offset }) => {
+    if (typeof offset === 'number') {
       return css`
-            margin-left: ${(100 * offset) / 12}%;
-         `;
+        margin-left: ${(100 * offset) / 12}%;
+      `;
     }
     return breakpointsMedia({
-      xs: offset?.xs
-        ? css`
-              margin-left: ${(100 * offset.xs) / 12}%;
-            `
-        : '',
-
-      sm: offset?.sm
-        ? css`
-                margin-left: ${(100 * offset.sm) / 12}%;
-            `
-        : '',
-
-      md: offset?.md
-        ? css`
-                margin-left: ${(100 * offset.md) / 12}%;
-            `
-        : '',
-
-      lg: offset?.lg
-        ? css`
-                margin-left: ${(100 * offset.lg) / 12}%;
-            `
-        : '',
-
-      xl: offset?.xl
-        ? css`
-                margin-left: ${(100 * offset.xl) / 12}%;
-            `
-        : '',
+      ...(offset.xs && {
+        xs: css`
+          margin-left: ${(100 * offset.xs) / 12}%;
+        `,
+      }),
+      ...(offset.sm && {
+        sm: css`
+          margin-left: ${(100 * offset.sm) / 12}%;
+        `,
+      }),
+      ...(offset.md && {
+        md: css`
+          margin-left: ${(100 * offset.md) / 12}%;
+        `,
+      }),
+      ...(offset.lg && {
+        lg: css`
+          margin-left: ${(100 * offset.lg) / 12}%;
+        `,
+      }),
+      ...(offset.xl && {
+        xl: css`
+          margin-left: ${(100 * offset.xl) / 12}%;
+        `,
+      }),
     });
   }}
-
-${propToStyle('display')}
-${propToStyle('alignItems')}
-${propToStyle('justifyContent')}
-${propToStyle('flexDirection')}
-${propToStyle('paddingRight')}
-     
+  ${propToStyle('display')}
+  ${propToStyle('flexDirection')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('paddingRight')}
+  ${propToStyle('paddingLeft')}
+  ${propToStyle('padding')}
+  ${propToStyle('order')}
 `;
+
+Col.defaultProps = {
+  value: {},
+  offset: {},
+};
 
 const Row = styled.div`
     display: flex;

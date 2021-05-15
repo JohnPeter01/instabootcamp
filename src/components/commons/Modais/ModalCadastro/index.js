@@ -37,7 +37,7 @@ const LockScroll = createGlobalStyle`
   }
 `;
 
-function Modal({ isOpen, onClose, children }) {
+function ModalCadasro({ isOpen, onClose, children }) {
   return (
     <ModalWrapper
       isOpen={isOpen}
@@ -76,10 +76,10 @@ function Modal({ isOpen, onClose, children }) {
   );
 }
 
-Modal.propTypes = {
+ModalCadasro.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default Modal;
+export default ModalCadasro;

@@ -48,6 +48,7 @@ const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
   ${propToStyle('textAlign')}
+  ${propToStyle('marginTop')}
   ${propToStyle('marginBottom')}
   ${propToStyle('margin')}
 `;

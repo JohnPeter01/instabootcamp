@@ -89,8 +89,14 @@ export default websitePageHOC(LoginScreen, {
     seoProps: {
       headTitle: 'Login',
     },
-    menuProps: {
+    menuOnlineProps: {
       display: false,
+    },
+    menuOfflineProps: {
+      display: false,
+    },
+    modal: {
+      display: 1,
     },
     pageBoxProps: {
       backgroundImage: 'url(/images/bubbles.svg)',

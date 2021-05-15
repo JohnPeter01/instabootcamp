@@ -5,16 +5,24 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import Footer from '../../commons/Footer';
 import Menu from '../../commons/Menu';
-import Modal from '../../commons/Modal';
+import MenuLogado from '../../commons/MenuLogado';
+import ModalCadasro from '../../commons/Modais/ModalCadastro';
+import ModalinserirFoto from '../../commons/Modais/ModalInserirFoto';
 import { Box } from '../../foundation/Layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
 import { WebsitePageContext } from './context';
+import FormImage from '../../patterns/FormImage';
 
 export { WebsitePageContext } from './context';
 
 export default function WebsitePageWrapper({
-  children, seoProps, pageBoxProps, menuProps, messages,
+  children,
+  seoProps,
+  pageBoxProps,
+  menuOnlineProps,
+  menuOfflineProps,
+  messages,
 }) {
   const [isModalOpen, setModalState] = React.useState(false);
   return (
@@ -36,7 +44,8 @@ export default function WebsitePageWrapper({
         justifyContent="space-between"
         {...pageBoxProps}
       >
-        <Modal
+        {menuOfflineProps.display && (
+        <ModalCadasro
           isOpen={isModalOpen}
           onClose={() => {
             setModalState(false);
@@ -45,12 +54,34 @@ export default function WebsitePageWrapper({
           {(propsDoModal) => (
             <FormCadastro propsDoModal={propsDoModal} />
           )}
-        </Modal>
-        {menuProps.display && (
-        <Menu
-          onCadastrarClick={() => setModalState(true)}
-        />
+        </ModalCadasro>
         )}
+
+        {menuOnlineProps.display && (
+        <ModalinserirFoto
+          isOpen={isModalOpen}
+          onClose={() => {
+            setModalState(false);
+          }}
+        >
+          {(propsDoModal) => (
+            <FormImage propsDoModal={propsDoModal} />
+          )}
+        </ModalinserirFoto>
+        )}
+
+        {menuOnlineProps.display && (
+          <MenuLogado
+            onCadastrarClick={() => setModalState(true)}
+          />
+        )}
+
+        {menuOfflineProps.display && (
+          <Menu
+            onCadastrarClick={() => setModalState(true)}
+          />
+        )}
+
         {children}
         <Footer />
       </Box>
@@ -61,8 +92,14 @@ export default function WebsitePageWrapper({
 WebsitePageWrapper.defaultProps = {
   seoProps: {},
   pageBoxProps: {},
-  menuProps: {
+  menuOnlineProps: {
     display: true,
+  },
+  menuOfflineProps: {
+    display: true,
+  },
+  modal: {
+    display: 1,
   },
   messages: {},
 };
@@ -71,8 +108,14 @@ WebsitePageWrapper.propTypes = {
   seoProps: PropTypes.shape({
     headTitle: PropTypes.string,
   }),
-  menuProps: PropTypes.shape({
+  menuOnlineProps: PropTypes.shape({
     display: PropTypes.bool,
+  }),
+  menuOfflineProps: PropTypes.shape({
+    display: PropTypes.bool,
+  }),
+  modal: PropTypes.shape({
+    display: PropTypes.number,
   }),
   pageBoxProps: PropTypes.shape({
     backgroundImage: PropTypes.string,
