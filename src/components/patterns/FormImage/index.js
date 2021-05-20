@@ -30,7 +30,7 @@ const ImagePlaceholderWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     width: 100%;
     height: 100%;
 
@@ -94,6 +94,7 @@ function InputSection({ form }) {
         color="light.tertiary.light"
         textAlign="center"
         marginTop="-9px"
+        marginBottom="15px"
       >
         Formatos suportados: jpg, png, svg e xpto.
       </Text>
