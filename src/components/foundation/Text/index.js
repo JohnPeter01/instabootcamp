@@ -7,41 +7,25 @@ import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import Link from '../../commons/Link';
 import { WebsitePageContext } from '../../wrappers/WebsitePage/context';
 
-const paragraph1 = css`
-  ${({ theme }) => css`
-    font-size: ${theme.typographyVariants.paragraph1.fontSize};
-    font-weight: ${theme.typographyVariants.paragraph1.fontWeight};
-    line-height: ${theme.typographyVariants.paragraph1.lineHeight};
-  `}
-`;
-
-const smallestException = css`
-  ${({ theme }) => css`
-    font-size: ${theme.typographyVariants.smallestException.fontSize};
-    font-weight: ${theme.typographyVariants.smallestException.fontWeight};
-    line-height: ${theme.typographyVariants.smallestException.lineHeight};
-  `}
-`;
+function TextStyle(variant) {
+  return css`
+    font-size: ${({ theme }) => theme.typographyVariants[variant].fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants[variant].fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants[variant].lineHeight};
+  `;
+}
 
 export const TextStyleVariants = {
-  smallestException,
-  paragraph1,
-  title: css`
-    ${({ theme }) => css`
-      font-size: ${theme.typographyVariants.titleXS.fontSize};
-      font-weight: ${theme.typographyVariants.titleXS.fontWeight};
-      line-height: ${theme.typographyVariants.titleXS.lineHeight};
-    `}
-    ${breakpointsMedia({
-    md: css`
-        ${({ theme }) => css`
-          font-size: ${theme.typographyVariants.title.fontSize};
-          font-weight: ${theme.typographyVariants.title.fontWeight};
-          line-height: ${theme.typographyVariants.title.lineHeight};
-        `}
-      `,
-  })}
-  `,
+  title: breakpointsMedia({
+    xs: TextStyle('titleXS'),
+    md: TextStyle('title'),
+  }),
+  subTitle: TextStyle('subTitle'),
+  paragraph1: TextStyle('paragraph1'),
+  paragraph2: TextStyle('paragraph2'),
+  paragraph1bold: TextStyle('paragraph1bold'),
+  paragraph2bold: TextStyle('paragraph2bold'),
+  smallestException: TextStyle('smallestException'),
 };
 
 const TextBase = styled.span`
@@ -66,24 +50,11 @@ export function Text({
     ? websitePageContext.getCMSContent(cmsKey)
     : children;
 
-  if (href) {
-    return (
-      <TextBase
-        as={Link}
-        variant={variant}
-        href={href}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-      >
-        {componentContent}
-      </TextBase>
-    );
-  }
-
   return (
     <TextBase
-      as={tag}
+      as={href ? Link : tag}
       variant={variant}
+      href={href}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
@@ -96,14 +67,15 @@ Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
   children: null,
-  href: '',
-  cmsKey: undefined,
+  href: null,
+  cmsKey: '',
 };
 
+/* Validação dos tipos de entrada dos atributos */
 Text.propTypes = {
-  children: PropTypes.node,
-  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span', 'input']),
-  variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
+  tag: PropTypes.string,
   href: PropTypes.string,
+  variant: PropTypes.string,
+  children: PropTypes.node,
   cmsKey: PropTypes.string,
 };

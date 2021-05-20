@@ -114,6 +114,8 @@ const Col = styled.div`
     });
   }}
   ${propToStyle('display')}
+  ${propToStyle('maxHeight')}
+  ${propToStyle('marginTop')}
   ${propToStyle('flexDirection')}
   ${propToStyle('alignItems')}
   ${propToStyle('justifyContent')}
