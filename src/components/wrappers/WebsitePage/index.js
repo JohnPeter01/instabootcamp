@@ -65,7 +65,12 @@ export default function WebsitePageWrapper({
           }}
         >
           {(propsDoModal) => (
-            <FormImage propsDoModal={propsDoModal} />
+            <FormImage
+              propsDoModal={propsDoModal}
+              onClose={() => {
+                setModalState(false);
+              }}
+            />
           )}
         </ModalinserirFoto>
         )}

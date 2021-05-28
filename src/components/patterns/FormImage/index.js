@@ -47,7 +47,7 @@ const ImagePlaceholderWrapper = styled.div`
 `;
 
 function ImagePlaceholder({ url, filter }) {
-  const photoUrl = url || 'https://via.placeholder.com/200';
+  const photoUrl = url || 'https://via.placeholder.com/600';
 
   return (
     <ImagePlaceholderWrapper>
@@ -102,7 +102,7 @@ function InputSection({ form }) {
   );
 }
 
-export default function FormImage({ propsDoModal }) {
+export default function FormImage({ propsDoModal, onClose }) {
   const postSchema = {};
   const form = useForm({
     initialValues: {
@@ -161,7 +161,7 @@ export default function FormImage({ propsDoModal }) {
             // eslint-disable-next-line react/jsx-props-no-spreading
           {...propsDoModal}
         >
-          <ModalCloseButton />
+          <ModalCloseButton closeModal={onClose} />
           <ImagePlaceholder url={form.values.photoUrl} filter="nenhum" />
           {/* <FormContent /> */}
           <InputSection form={form} />

@@ -20,6 +20,7 @@ export const MenuLogadoWrapper = styled.nav`
     md: css`
       justify-content:flex-start;
       margin-top:32px;
+      margin-bottom:32px;
       margin-left:auto;
       margin-right:auto;
       width: 100%;

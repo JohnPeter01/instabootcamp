@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Button } from '../Button';
 import { Logo } from '../../../theme/Logo';
-import FormPesquisa from '../../patterns/FormPesquisa';
 import { MenuLogadoWrapper } from './styles/MenuLogadoWrapper';
-import { homeAlt as HomeAlt, heart as Heart, plusCircle as PlusCircle } from '../../display/Icons';
-
-/*
-  Padrão criar uma pasta com o nome do componente e dentro dela fica o index.js com a implementação.
-*/
+import { TabBar } from '../TabBar';
 
 export default function MenuLogado({ onCadastrarClick }) {
   return (
@@ -18,10 +12,7 @@ export default function MenuLogado({ onCadastrarClick }) {
       </MenuLogadoWrapper.LeftSide>
       <MenuLogadoWrapper.CentralSide as="ul" />
       <MenuLogadoWrapper.RightSide>
-        <FormPesquisa />
-        <PlusCircle />
-        <HomeAlt />
-        <Heart onClick={onCadastrarClick} />
+        <TabBar onClickFunc={onCadastrarClick} />
       </MenuLogadoWrapper.RightSide>
     </MenuLogadoWrapper>
   );

@@ -4,6 +4,7 @@ import { Grid } from '../../foundation/Layout/Grid';
 import { Box } from '../../foundation/Layout/Box';
 import { Text } from '../../foundation/Text';
 import { Avatar } from '../../commons/Avatar';
+import styled from 'styled-components';
 
 function UserStats({ statsCount, statsTitle }) {
   return (
@@ -110,9 +111,15 @@ UserPosts.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
+const ProfileScreenWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.modes.light.background.main.color};
+  width: 100%;
+  padding-bottom: 30px;
+`;
+
 export default function ProfileScreen({ userInfo, posts }) {
   return (
-    <>
+    <ProfileScreenWrapper>
       <Grid.Container
         marginTop={{ xs: '24px', md: '64px' }}
       >
@@ -183,7 +190,7 @@ export default function ProfileScreen({ userInfo, posts }) {
           <UserPosts posts={posts} />
         </Box>
       </Grid.Container>
-    </>
+    </ProfileScreenWrapper>
   );
 }
 
