@@ -13,20 +13,25 @@ const ModalWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  
   margin: auto;
   overflow: scroll;
-  transition: .3s;
   z-index: 100;
+
+  transition: .3s;
+
   ${({ isOpen }) => {
     if (isOpen) {
       return css`
         opacity: 1;
         pointer-events: all;
+        overflow: hidden;
       `;
     }
     return css`
       opacity: 0;
       pointer-events: none;
+      overflow: hidden;
     `;
   }}
 `;
@@ -34,6 +39,7 @@ const ModalWrapper = styled.div`
 const LockScroll = createGlobalStyle`
   body {
     overflow: hidden;
+    overflow-x: hidden;
   }
 `;
 

@@ -6,7 +6,7 @@ import { CloseOutline as CloseIcon } from '@styled-icons/evaicons-outline/CloseO
 const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 15px;
+  padding-bottom: 10px;
   top: 12px;
   right: 12px;
   color: ${({ theme }) => theme.colors.modes.light.tertiary.light.color};
