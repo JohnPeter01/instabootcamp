@@ -18,14 +18,15 @@ export const loginService = {
       },
     })
       .then((respostaConvertida) => {
-        // Salvar o Token
-        // Escrever os testes
         const { token } = respostaConvertida.data;
         const hasToken = token;
         if (!hasToken) {
-          throw new Error('Failed to Login');
+          throw new Error('Falha ao Logar');
         }
         const DAY_IN_SECONDS = 86400;
+
+        sessionStorage.setItem(LOGIN_COOKIE_APP_TOKEN, token);
+
         setCookieModule(null, LOGIN_COOKIE_APP_TOKEN, token, {
           path: '/',
           maxAge: DAY_IN_SECONDS * 7,

@@ -41,7 +41,7 @@ function LoginScreen() {
           >
             <Link
               href="/"
-              color="light.secondary.main"
+              color="secondary.main"
             >
               <Logo size="large" />
             </Link>
@@ -50,13 +50,13 @@ function LoginScreen() {
           <Text
             variant="paragraph1"
             tag="p"
-            color="light.tertiary.light"
+            color="tertiary.light"
             textAlign="center"
           >
             {'Não tem uma conta? '}
             <Link
               href="/"
-              color="light.secondary.main"
+              color="secondary.main"
               onClick={(event) => {
                 event.preventDefault();
                 websitePageContext.toggleModalCadastro();

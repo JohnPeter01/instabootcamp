@@ -7,30 +7,35 @@ import {
   HeartOutline as HeartIcon,
 } from '@styled-icons/evaicons-outline';
 import NextLink from 'next/link';
-import PropTypes from 'prop-types';
 import { Avatar } from '../Avatar';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { propToStyle } from '../../../theme/Utils/propToStyle';
-import { Button } from '../Button';
-import TextField from '../forms/TextField';
-import { useForm } from '../../../infra/hooks/useForm';
+import Modal from '../Modal';
+import FormImagem from '../../patterns/FormImage';
+// import { authService } from '../../../services/auth/authService';
 
 const TabBarWrapper = styled.div`
+  position: fixed;
   bottom: 0;
   left: 0;
   /* height: 64px; */
   width: 100%;
   width: -webkit-fill-available;
+
   display: flex;
   justify-content: space-between;
   padding: 12px 26px;
-  background-color: ${({ theme }) => theme.colors.modes.light.background.light.color};
+
+  background-color: ${({ theme }) => theme.colors.background.light.color};
+
   box-shadow: 0px -10px 16px rgba(0, 0, 0, 0.04);
   border-radius: 24px 24px 0px 0px;
-  border-top-color: ${({ theme }) => theme.colors.modes.light.borders.main.color};
+  border-top-color: ${({ theme }) => theme.colors.borders.main.color};
   border-top-style: solid;
   border-top-width: 1px;
+
   z-index: 99;
+
   ${breakpointsMedia({
     // Quando estiver no menu superior
     md: css`
@@ -54,12 +59,15 @@ const Tab = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
   transition: 0.3s ease;
+
   &:hover {
     opacity: 0.6;
   }
+
   svg {
-    fill: ${({ theme }) => theme.colors.modes.light.tertiary.main.color};
+    fill: ${({ theme }) => theme.colors.tertiary.main.color};
     ${breakpointsMedia({
     xs: css`
       width: 24px;
@@ -71,6 +79,7 @@ const Tab = styled.div`
     `,
   })}
   }
+
   ${({ rounded }) => rounded && css`
     background-color: #FB7B6B;
     border-radius: 50%;
@@ -80,59 +89,31 @@ const Tab = styled.div`
       height: 24px;
     }
   `};
+
   ${({ selected }) => selected && css`
     svg {
-      fill: ${({ theme }) => theme.colors.modes.light.primary.main.color};
+      fill: ${({ theme }) => theme.colors.primary.main.color};
       ${propToStyle('size')}
     }
+
     img {
-      border: 2px solid ${({ theme }) => theme.colors.modes.light.primary.main.color};
+      border: 2px solid ${({ theme }) => theme.colors.primary.main.color};
     }
   `}
+
   ${breakpointsMedia({
     md: css`
       height: 32px;
       width: 32px;
     `,
   })}
+
   ${propToStyle('order')}
 `;
 
-export function TabBar({ onClickFunc }) {
-//   const [isModalImagemOpen, setModalImagem] = React.useState(false);
+export function TabBar() {
+  const [isModalImagemOpen, setModalImagem] = React.useState(false);
   const [tabSelected, setTabSelected] = React.useState('home');
-  const postSchema = {};
-  const initialValues = {
-    pesquisar: '',
-  };
-  const form = useForm({
-    initialValues,
-    onSubmit: (values) => {
-      form.setIsFormDisabled(true);
-
-      console.log(values);
-
-      // postService.post({
-      //   photoUrl: values.photoUrl,
-      //   description: values.description,
-      //   filter: selectedFilter,
-      // })
-      //   .then(() => {
-      //     // Mensagem de sucesso
-      //     console.log('sucesso!');
-      //   })
-      //   .catch(() => {
-      //     // Faça alguma coisa com o erro
-      //     form.setIsFormDisabled(false);
-      //   });
-    },
-    async validateSchema(values) {
-      return postSchema.validate(values, {
-        abortEarly: false,
-      });
-    },
-  });
-
   // const [user, setUser] = React.useState({});
 
   // React.useEffect(() => {
@@ -143,6 +124,28 @@ export function TabBar({ onClickFunc }) {
 
   return (
     <TabBarWrapper>
+      <Modal
+        isOpen={isModalImagemOpen}
+        onClose={() => setModalImagem(false)}
+        animation={{
+          open: {
+            // y: 0,
+            scale: 1,
+          },
+          closed: {
+            // y: -100,
+            scale: 0,
+          },
+        }}
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {(ModalCloseButton, propsDoModal) => (
+          <FormImagem propsDoModal={propsDoModal} ModalCloseButton={ModalCloseButton} />
+        )}
+      </Modal>
       <Tab
         selected={tabSelected === 'home'}
         order={{
@@ -162,27 +165,18 @@ export function TabBar({ onClickFunc }) {
           md: 0,
         }}
         onClick={() => setTabSelected('search')}
-        style={{
-          marginRight: '150px',
-        }}
       >
-        <TextField
-          name="pesquisar"
-          placeholder="Pesquisar"
-          value={form.values.pesquisar}
-          onChange={form.handleChange}
-          isTouched={form.touched.usuario}
-          error={form.errors.usuario}
-          onBlur={form.handleBlur}
-          style={{ display: 'inline-flex', width: '300px' }}
-        />
+        <SearchIcon />
       </Tab>
       <Tab
         selected={tabSelected === 'new-post'}
         order={{
           md: 1,
         }}
-        onClick={onClickFunc}
+        onClick={() => {
+          setTabSelected('new-post');
+          setModalImagem(true);
+        }}
         rounded
       >
         <AddIcon />
@@ -216,7 +210,3 @@ export function TabBar({ onClickFunc }) {
     </TabBarWrapper>
   );
 }
-
-TabBar.propTypes = {
-  onClickFunc: PropTypes.func.isRequired,
-};

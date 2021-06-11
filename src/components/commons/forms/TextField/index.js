@@ -12,15 +12,15 @@ const InputWrapper = styled.div`
 
 const Input = styled(Text)`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.modes.light.tertiary.light.color};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary.light.color};
   padding: 12px 16px;
   outline: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
 
   ${({ theme, isFieldInvalid }) => isFieldInvalid && css`
-    border-color: ${theme.colors.modes.light.error.main.color};
+    border-color: ${theme.colors.error.main.color};
     & + span {
-      color: ${theme.colors.modes.light.error.main.color};
+      color: ${theme.colors.error.main.color};
       font-size: 11px;
     }
   `}
@@ -61,7 +61,7 @@ export default function TextField({
       { isFieldInvalid && (
       <Text
         variant="paragraph1"
-        color="modes.light.error.main"
+        color="error.main"
         role="alert"
       >
         {error}

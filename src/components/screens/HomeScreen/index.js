@@ -26,7 +26,7 @@ export function HomeScreen() {
             <Text
               variant="title"
               tag="h1"
-              color="light.tertiary.main"
+              color="tertiary.main"
               textAlign={{
                 xs: 'center',
                 md: 'left',
@@ -37,7 +37,7 @@ export function HomeScreen() {
             <Text
               variant="paragraph1"
               tag="p"
-              color="light.tertiary.light"
+              color="tertiary.light"
               textAlign={{
                 xs: 'center',
                 md: 'left',
@@ -49,7 +49,7 @@ export function HomeScreen() {
             </Text>
 
             <Button
-              variant="light.primary.main"
+              variant="primary.main"
               margin={{
                 xs: 'auto',
                 md: 'initial',

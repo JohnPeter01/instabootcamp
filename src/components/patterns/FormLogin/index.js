@@ -34,7 +34,7 @@ export default function LoginForm({ onSubmit }) {
         password: values.senha, // 'senhasegura'
       })
         .then(() => {
-          router.push('/app/profile');
+          router.push('/app/profile/profile');
         })
         .catch((err) => {
           // Desafio: Mostrar o erro na tela
@@ -75,7 +75,7 @@ export default function LoginForm({ onSubmit }) {
 
       <Button
         type="submit"
-        variant="light.primary.main"
+        variant="primary.main"
         margin={{
           xs: '0 auto',
           md: 'initial',

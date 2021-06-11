@@ -38,7 +38,7 @@ export default function FAQQuestionScreen({ category, question }) {
             as="ul"
             listStyle="none"
             padding="24px 30px"
-            backgroundColor={theme.colors.modes.light.borders.main.color}
+            backgroundColor={theme.colors.borders.main.color}
             borderRadiusTheme
           >
             {category.questions.map((currentQuestion) => (
