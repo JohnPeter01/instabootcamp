@@ -9,6 +9,7 @@ import { ProfilePosts } from './ProfilePosts';
 import { UserContext } from '../../wrappers/WebsitePage/context/user';
 
 export default function ProfileScreen({ userInfo, posts: serverPosts }) {
+  console.log(userInfo);
   const { posts, setPosts } = React.useContext(UserContext);
 
   React.useEffect(() => {
@@ -25,8 +26,6 @@ export default function ProfileScreen({ userInfo, posts: serverPosts }) {
       >
         <Grid.Col
           value={{ xs: 3, md: 2, lg: 3 }}
-          // offset={{ md: 3 }}
-          // padding={0}
         >
           <Box
             width={{

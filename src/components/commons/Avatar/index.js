@@ -16,12 +16,14 @@ const AvatarBase = styled.div`
       width: ${size};
     `;
   }}
+
   /* clip-path: circle(50% at 50% 50%); */
   
   & > img {
     width: inherit;
     border-radius: 50%;
   }
+
   ${propToStyle('height')}
   ${propToStyle('width')}
 `;

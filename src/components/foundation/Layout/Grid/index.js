@@ -3,14 +3,19 @@ import { breakpointsMedia } from '../../../../theme/Utils/breakpointsMedia';
 import { propToStyle } from '../../../../theme/Utils/propToStyle';
 
 const Container = styled.div`
-    width: 100%;
-    padding-right: 28px;
-    padding-left: 28px;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: initial;
-
-    ${breakpointsMedia({
+  width: 100%;
+  padding-right: 28px;
+  padding-left: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  
+  ${breakpointsMedia({
+    xs: css`
+      max-width: initial;
+  
+      padding-right: 28px;
+      padding-left: 28px;
+    `,
     sm: css`
       max-width: 576px; 
     `,
@@ -31,6 +36,7 @@ const Container = styled.div`
   ${propToStyle('display')}
   ${propToStyle('flex')}
   ${propToStyle('alignItems')}
+  ${propToStyle('padding')}
 `;
 
 const Col = styled.div`
@@ -39,6 +45,7 @@ const Col = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
+
   ${({ value }) => {
     if (typeof value === 'number') {
       return css`
@@ -46,6 +53,7 @@ const Col = styled.div`
         max-width: ${(100 * value) / 12}%;
       `;
     }
+
     return breakpointsMedia({
       ...(value.xs && {
         xs: css`
@@ -79,12 +87,14 @@ const Col = styled.div`
       }),
     });
   }}
+
   ${({ offset }) => {
     if (typeof offset === 'number') {
       return css`
         margin-left: ${(100 * offset) / 12}%;
       `;
     }
+
     return breakpointsMedia({
       ...(offset.xs && {
         xs: css`
@@ -113,9 +123,8 @@ const Col = styled.div`
       }),
     });
   }}
+
   ${propToStyle('display')}
-  ${propToStyle('maxHeight')}
-  ${propToStyle('marginTop')}
   ${propToStyle('flexDirection')}
   ${propToStyle('alignItems')}
   ${propToStyle('justifyContent')}
@@ -131,19 +140,30 @@ Col.defaultProps = {
 };
 
 const Row = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -16px;
-    margin-left: -16px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -16px;
+  margin-left: -16px;
 
-    ${propToStyle('flex')}
-    ${propToStyle('marginLeft')}
-    ${propToStyle('marginRight')}
-    ${propToStyle('justifyContent')}
+  ${({ noMargin }) => noMargin && css`
+    margin-right: 0px;
+    margin-left: 0px;
+  `}
+
+  ${propToStyle('flex')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('flexDirection')}
+  ${propToStyle('flexWrap')}
+  ${propToStyle('marginTop')}
+  ${propToStyle('marginLeft')}
+  ${propToStyle('marginRight')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('columnGap')}
 `;
 
+// eslint-disable-next-line import/prefer-default-export
 export const Grid = {
   Container,
-  Col,
   Row,
+  Col,
 };

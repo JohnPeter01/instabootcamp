@@ -44,7 +44,18 @@ export default function WebsitePageWrapper({
         {...pageBoxProps}
       >
 
-        <Modal isOpen={isModalOpen} onClose={() => setModal(false)}>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setModal(false)}
+          animation={{
+            open: {
+              x: '0%',
+            },
+            closed: {
+              x: '100%',
+            },
+          }}
+        >
           {(propsDoModal) => (
             <FormCadastro propsDoModal={propsDoModal} />
           )}

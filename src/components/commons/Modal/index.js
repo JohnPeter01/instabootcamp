@@ -44,7 +44,7 @@ const LockScroll = createGlobalStyle`
   }
 `;
 
-export default function Modal({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children , animation }) {
   return (
     <ModalWrapper
       isOpen={isOpen}
@@ -61,10 +61,10 @@ export default function Modal({ isOpen, onClose, children }) {
       <motion.div
         variants={{
           open: {
-            x: 0,
+            x: animation.open.x,
           },
           closed: {
-            x: '100%',
+            x: animation.closed.x,
           },
         }}
         animate={isOpen ? 'open' : 'closed'}
