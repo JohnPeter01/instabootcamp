@@ -8,8 +8,7 @@ import { ProfileBio } from './ProfileBio';
 import { ProfilePosts } from './ProfilePosts';
 import { UserContext } from '../../wrappers/WebsitePage/context/user';
 
-export default function ProfileScreen({ userInfo, posts: serverPosts }) {
-  console.log(userInfo);
+export default function ProfileScreen({ userID, userInfo, posts: serverPosts }) {
   const { posts, setPosts } = React.useContext(UserContext);
 
   React.useEffect(() => {
@@ -66,15 +65,15 @@ export default function ProfileScreen({ userInfo, posts: serverPosts }) {
         flexWrap="wrap"
         justifyContent="space-between"
       >
-        <ProfilePosts posts={posts} userID={userInfo.id} />
+        <ProfilePosts posts={posts} userID={userID} />
       </Box>
     </Grid.Container>
   );
 }
 
 ProfileScreen.propTypes = {
+  userID: PropTypes.string.isRequired,
   userInfo: PropTypes.shape({
-    id: PropTypes.string,
     bio: PropTypes.string,
     totalPosts: PropTypes.number,
     totalFollowing: PropTypes.number,

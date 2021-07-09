@@ -7,12 +7,14 @@ import {
   MessageCircleOutline as CommentIcon,
   BookmarkOutline as BookmarkIcon,
 } from '@styled-icons/evaicons-outline';
+import { Heart as LikeSolidIcon } from '@styled-icons/evaicons-solid';
 import { Grid } from '../../../foundation/Layout/Grid';
 import { Text } from '../../../foundation/Text';
 
 const ActionsBar = styled.div`
   display: flex;
   padding: 16px 24px;
+
   svg {
     fill: ${({ theme }) => theme.colors.tertiary.main.color};
   }
@@ -25,7 +27,7 @@ const Action = styled.div`
   column-gap: 8px;
 `;
 
-export function PostActions({ likes }) {
+export function PostActions({ likes, isLiked }) {
   return (
     <ActionsBar>
       <Grid.Col
@@ -34,7 +36,9 @@ export function PostActions({ likes }) {
         padding={0}
       >
         <Action>
-          <LikeIcon size={24} />
+          {isLiked
+            ? <LikeSolidIcon size={24} style={{ fill: 'red' }} />
+            : <LikeIcon size={24} />}
           <Text
             variant="paragraph2bold"
             color="tertiary.main"
@@ -71,4 +75,5 @@ export function PostActions({ likes }) {
 
 PostActions.propTypes = {
   likes: PropTypes.number.isRequired,
+  isLiked: PropTypes.bool.isRequired,
 };

@@ -5,9 +5,9 @@ import websitePageHOC from '../../../src/components/wrappers/WebsitePage/hoc';
 import { authService } from '../../../src/services/auth/authService';
 import { userService } from '../../../src/services/user/userService';
 
-function ActiveUserProfilePage({ userInfo, posts }) {
+function ActiveUserProfilePage({ userID, userInfo, posts }) {
   const orderedPosts = posts.reverse();
-  return <ProfileScreen userInfo={userInfo} posts={orderedPosts} />;
+  return <ProfileScreen userID={userID} userInfo={userInfo} posts={orderedPosts} />;
 }
 
 export default websitePageHOC(ActiveUserProfilePage, {
@@ -28,10 +28,12 @@ export async function getServerSideProps(ctx) {
   const dados = await userService.getProfilePage(ctx);
 
   const posts = dados.posts.filter((post) => post.user === user.id);
+  const userID = user.id;
   const { userInfo } = dados;
 
   return {
     props: {
+      userID,
       userInfo,
       posts,
     },

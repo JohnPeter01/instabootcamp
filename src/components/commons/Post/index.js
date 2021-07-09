@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '../../foundation/Layout/Box';
 import { PostNav } from './NavPost';
-import { PostImage } from './ImagePost/Index';
-import { PostActions } from './ActionPost/Index';
 import { PostComments } from './CommentPost';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
-import { postService } from '../../../services/post/postService';
+import { useLikes } from '../../../infra/hooks/useLike';
+import { PostImage } from './ImagePost';
+import { PostActions } from './ActionPost';
 
 const PostWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background.light.color};
@@ -32,13 +32,10 @@ export function Post({
   id,
   userInfo,
 }) {
-  const [likesCount, setLikesCount] = useState(likes.length);
+  const userID = userInfo.id;
+  const postID = id;
 
-  function toggleLike() {
-    postService
-      .toggleLike({ postID: id })
-      .then((res) => setLikesCount(likesCount + res));
-  }
+  const likesController = useLikes({ postID, likes, userID });
 
   return (
     <PostWrapper>
@@ -47,14 +44,16 @@ export function Post({
         <PostImage
           src={photoUrl}
           filter={filter}
-          likes={likesCount}
-          toggleLike={toggleLike}
+          likesController={likesController}
           height={{
             xs: '320px',
             md: '510px',
           }}
         />
-        <PostActions likes={likesCount} />
+        <PostActions
+          likes={likesController.likesCount}
+          isLiked={likesController.isLiked}
+        />
         <PostComments description={description} />
       </Box>
     </PostWrapper>
@@ -77,21 +76,17 @@ export function ProfilePost({
   photoUrl,
   filter,
   id,
+  userID,
 }) {
-  const [likesCount, setLikesCount] = useState(likes.length);
+  const postID = id;
 
-  function toggleLike() {
-    postService
-      .toggleLike({ postID: id })
-      .then((res) => setLikesCount(likesCount + res));
-  }
+  const likesController = useLikes({ postID, likes, userID });
 
   return (
     <PostImage
       src={photoUrl}
       filter={filter}
-      likes={likesCount}
-      toggleLike={toggleLike}
+      likesController={likesController}
       width="inherit"
       height="inherit"
     />
@@ -104,4 +99,5 @@ ProfilePost.propTypes = {
   photoUrl: PropTypes.string.isRequired,
   filter: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired,
 };

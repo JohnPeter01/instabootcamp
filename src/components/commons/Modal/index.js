@@ -44,7 +44,9 @@ const LockScroll = createGlobalStyle`
   }
 `;
 
-export default function Modal({ isOpen, onClose, children , animation }) {
+export default function Modal({
+  isOpen, onClose, children, animation,
+}) {
   return (
     <ModalWrapper
       isOpen={isOpen}
@@ -87,4 +89,8 @@ Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
+  animation: PropTypes.shape({
+    open: PropTypes.shape({ x: PropTypes.string }),
+    closed: PropTypes.shape({ x: PropTypes.string }),
+  }).isRequired,
 };
