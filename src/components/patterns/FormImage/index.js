@@ -47,10 +47,12 @@ export default function FormImagem({ ModalCloseButton, propsDoModal, onSubmit })
         filter: selectedFilter,
       })
         .then((post) => {
+          console.log('FOI');
           setPosts([post, ...posts]);
           // Mensagem de sucesso
         })
         .catch(() => {
+          console.log('NÃO FOI');
           // Faça alguma coisa com o erro
           form.setIsFormDisabled(false);
         });
@@ -85,7 +87,7 @@ export default function FormImagem({ ModalCloseButton, propsDoModal, onSubmit })
               && (
                 <form
                   id="formImagem"
-                  onSubmit={onSubmit || form.handleSubmit}
+                  onSubmit={onSubmit || form.handleSubimmit}
                 >
                   <FilterSection
                     form={form}

@@ -11,7 +11,6 @@ export function ProfilePostsRow(posts, index, userID) {
     md: '150px',
     lg: '250px',
   };
-
   return (
     <Grid.Row marginBottom={{ xs: '4px', md: '32px' }} key={index}>
       {posts.map((post) => (
