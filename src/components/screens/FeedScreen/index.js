@@ -57,14 +57,16 @@ export default function FeedScreen({ user }) {
               }}
             >
               {posts
-                && posts.map((post) => (
-                  <Post
-                    userInfo={user}
-                    {...post}
-                    id={post._id}
-                    key={post._id}
-                  />
-                ))}
+                && posts
+                  .filter((post) => post !== undefined)
+                  .map((post) => (
+                    <Post
+                      userInfo={user}
+                      {...post}
+                      id={post._id}
+                      key={post._id}
+                    />
+                  ))}
             </Grid.Col>
             <Grid.Col
               display={{

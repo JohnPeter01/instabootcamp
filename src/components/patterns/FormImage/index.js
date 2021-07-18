@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import { Grid } from '../../foundation/Layout/Grid';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { useForm } from '../../../infra/hooks/useForm';
@@ -36,7 +37,7 @@ export default function FormImagem({ ModalCloseButton, propsDoModal, onSubmit })
   const form = useForm({
     initialValues: {
       photoUrl: '',
-      description: 'ma oe',
+      description: 'Descrição da imagem.',
       filter: selectedFilter,
     },
     onSubmit: (values) => {
@@ -49,6 +50,7 @@ export default function FormImagem({ ModalCloseButton, propsDoModal, onSubmit })
         .then((post) => {
           console.log('FOI');
           setPosts([post, ...posts]);
+          Router.reload(window.location.pathname);
           // Mensagem de sucesso
         })
         .catch(() => {

@@ -129,7 +129,7 @@ export function TabBar() {
         onClose={() => setModalImagem(false)}
         animation={{
           open: {
-            x: '40%',
+            x: '0%',
             // scale: 1,
           },
           closed: {

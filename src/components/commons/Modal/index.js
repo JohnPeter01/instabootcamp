@@ -8,6 +8,7 @@ const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
   background-color: rgba(0, 0, 0, 0.1);
   
   position: fixed;
@@ -15,11 +16,13 @@ const ModalWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+
   margin: auto;
   overflow: scroll;
   z-index: 100;
   
   transition: 0.3s;
+
   ${(props) => {
     if (props.isOpen) {
       return css`
@@ -28,6 +31,7 @@ const ModalWrapper = styled.div`
         overflow: hidden;
       `;
     }
+
     return css`
       opacity: 0;
       pointer-events: none;
@@ -45,7 +49,7 @@ const LockScroll = createGlobalStyle`
 `;
 
 export default function Modal({
-  isOpen, onClose, children, animation,
+  isOpen, onClose, children, animation, style,
 }) {
   return (
     <ModalWrapper
@@ -61,14 +65,7 @@ export default function Modal({
       {isOpen && <LockScroll />}
 
       <motion.div
-        variants={{
-          open: {
-            x: animation.open.x,
-          },
-          closed: {
-            x: animation.closed.x,
-          },
-        }}
+        variants={animation}
         animate={isOpen ? 'open' : 'closed'}
         transition={{
           duration: 0.5,
@@ -76,6 +73,7 @@ export default function Modal({
         style={{
           display: 'flex',
           flex: 1,
+          ...style,
         }}
       >
         {/* Props do modal */}
@@ -85,12 +83,24 @@ export default function Modal({
   );
 }
 
+Modal.defaultProps = {
+  animation: {
+    open: {
+      x: '0%',
+    },
+    closed: {
+      x: '100%',
+    },
+  },
+  style: {},
+};
+
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
-  animation: PropTypes.shape({
-    open: PropTypes.shape({ x: PropTypes.string }),
-    closed: PropTypes.shape({ x: PropTypes.string }),
-  }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  animation: PropTypes.object,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };

@@ -9,7 +9,7 @@ import Modal from '../../commons/Modal';
 import { Box } from '../../foundation/Layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
-// import { AuthContext } from './context/auth';
+import { AuthContext } from './context/auth';
 import { WebsitePageContext } from './context';
 
 export { WebsitePageContext } from './context';
@@ -23,7 +23,7 @@ export default function WebsitePageWrapper({
 }) {
   const [isModalOpen, setModal] = useState(false);
   const theme = useTheme();
-  // const { hasActiveSession } = React.useContext(AuthContext);
+  const { hasActiveSession } = React.useContext(AuthContext);
 
   return (
     <WebsitePageContext.Provider
@@ -44,18 +44,7 @@ export default function WebsitePageWrapper({
         {...pageBoxProps}
       >
 
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setModal(false)}
-          animation={{
-            open: {
-              x: '0%',
-            },
-            closed: {
-              x: '100%',
-            },
-          }}
-        >
+        <Modal isOpen={isModalOpen} onClose={() => setModal(false)}>
           {(propsDoModal) => (
             <FormCadastro propsDoModal={propsDoModal} />
           )}
@@ -64,7 +53,7 @@ export default function WebsitePageWrapper({
         {menuProps.display && (
           <Menu
             onCadastrarClick={() => setModal(true)}
-            hasActiveSession={menuProps.hasActiveSession}
+            hasActiveSession={hasActiveSession}
           />
         )}
         {children}
@@ -79,7 +68,6 @@ WebsitePageWrapper.defaultProps = {
   pageBoxProps: {},
   menuProps: {
     display: true,
-    hasActiveSession: false,
   },
   messages: {},
 };
@@ -90,7 +78,6 @@ WebsitePageWrapper.propTypes = {
   }),
   menuProps: PropTypes.shape({
     display: PropTypes.bool,
-    hasActiveSession: PropTypes.bool,
   }),
   pageBoxProps: PropTypes.shape({
     backgroundImage: PropTypes.string,
