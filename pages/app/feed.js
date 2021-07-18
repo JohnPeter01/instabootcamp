@@ -12,7 +12,11 @@ function FeedPage({ user }) {
 export default websitePageHOC(FeedPage, {
   pageWrapperProps: {
     seoProps: {
-      headTitle: 'Feed',
+      headTitle: 'feed',
+    },
+    menuProps: {
+      display: true,
+      hasActiveSession: true,
     },
   },
 });

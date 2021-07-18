@@ -6,12 +6,6 @@ export default websitePageHOC(HomeScreen, {
     seoProps: {
       headTitle: 'Home',
     },
-    menuOnlineProps: {
-      display: false,
-    },
-    menuOfflineProps: {
-      display: true,
-    },
     modal: {
       display: 2,
     },

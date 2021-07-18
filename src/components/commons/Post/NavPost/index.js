@@ -38,7 +38,7 @@ export function PostNav({ user }) {
       >
         <Nav.UserInfo>
           <Avatar
-            src="/images/avatar.png"
+            src="https://github.com/JohnPeter01.png"
             size={32}
             alt="Nicolas Cage"
           />

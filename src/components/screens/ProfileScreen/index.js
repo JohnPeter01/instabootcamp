@@ -35,7 +35,7 @@ export default function ProfileScreen({ userID, userInfo, posts: serverPosts }) 
             }}
           >
             <Avatar
-              src="/images/avatar.png"
+              src="https://github.com/JohnPeter01.png"
               alt="Foto de perfil deste usuário"
               size="inherit"
             />

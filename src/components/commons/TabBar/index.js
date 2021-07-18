@@ -200,7 +200,7 @@ export function TabBar() {
         <NextLink href="/app/profile/">
           <a href="/app/profile/">
             <Avatar
-              src="/images/avatar.png"
+              src="https://github.com/JohnPeter01.png"
               size={{ xs: '24px', md: '32px' }}
               alt="Ir para a sua página de perfil"
             />

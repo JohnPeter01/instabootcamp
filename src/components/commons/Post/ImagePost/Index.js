@@ -40,15 +40,22 @@ export function PostImage({
   src, filter, likesController, height, width,
 }) {
   return (
-    <Image
-      className={(filter && filter.includes('filter') && filter) || `filter-${filter}`}
-      height={height}
-      width={width}
-      onClick={likesController.toggleLike}
-    >
-      <img src={src} alt="Nicolas Cage e uma espada" loading="lazy" />
-      <LikeWrapper likes={likesController.likesCount} isLiked={likesController.isLiked} />
-    </Image>
+    <>
+      <Image
+        height={height}
+        width={width}
+        onClick={likesController.toggleLike}
+      >
+        <img
+          className={(filter && filter.includes('filter') && filter) || `filter-${filter}`}
+          src={src}
+          alt="Nicolas Cage e uma espada"
+          loading="lazy"
+        />
+        <LikeWrapper likes={likesController.likesCount} isLiked={likesController.isLiked} />
+      </Image>
+
+    </>
   );
 }
 

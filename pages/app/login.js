@@ -89,12 +89,6 @@ export default websitePageHOC(LoginScreen, {
     seoProps: {
       headTitle: 'Login',
     },
-    menuOnlineProps: {
-      display: false,
-    },
-    menuOfflineProps: {
-      display: false,
-    },
     modal: {
       display: 1,
     },
