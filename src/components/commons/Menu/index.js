@@ -6,7 +6,6 @@ import { MenuWrapper } from './styles/MenuWrapper';
 import Link from '../Link';
 import { TabBar } from '../TabBar';
 import { Grid } from '../../foundation/Layout/Grid';
-import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 
 const links = [
   {

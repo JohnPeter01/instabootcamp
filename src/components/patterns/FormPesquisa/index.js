@@ -1,8 +1,6 @@
 import React from 'react';
 import * as yup from 'yup';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Button } from '../../commons/Button';
 import TextField from '../../commons/forms/TextField';
 import { useForm } from '../../../infra/hooks/useForm';
 
@@ -23,23 +21,6 @@ export default function FormPesquisa({ onSubmit }) {
   const form = useForm({
     initialValues,
     onSubmit: () => {},
-    // onSubmit: (values) => {
-    //   form.setIsFormDisabled(true);
-    //   loginService.login({
-    //     username: values.usuario, // 'omariosouto'
-    //     password: values.senha, // 'senhasegura'
-    //   })
-    //     .then(() => {
-    //       router.push('/app/profile');
-    //     })
-    //     .catch((err) => {
-    //       // Desafio: Mostrar o erro na tela
-    //       console.error(err);
-    //     })
-    //     .finally(() => {
-    //       form.setIsFormDisabled(false);
-    //     });
-    // },
     async validateSchema(values) {
       return pesquisaSchema.validate(values, {
         abortEarly: false,
