@@ -32,6 +32,8 @@ jobs:
         run: node -v
       - name: Install de dependencias
         run: yarn install
+      - name: Build do projeto
+        run: yarn build
       - name: Roda o Linter!
         run: yarn lint
   unit_tests:
