@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box } from '../../foundation/Layout/Box';
 import { PostNav } from './NavPost';
 import { PostComments } from './CommentPost';
-import { PostActions } from '../Post/ActionPost';
+import { PostActions } from './ActionPost/index';
 import { PostImage } from './ImagePost';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { useLikes } from '../../../infra/hooks/useLike';
