@@ -5,20 +5,21 @@ import PropTypes from 'prop-types';
 import { Text } from '../../../foundation/Text';
 
 const InputWrapper = styled.div`
-  margin-bottom: 17px;
+  margin:17px;
+  position: relative;
 `;
 
 const Input = styled(Text)`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.modes.light.tertiary.light.color};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary.light.color};
   padding: 12px 16px;
   outline: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
 
   ${({ theme, isFieldInvalid }) => isFieldInvalid && css`
-    border-color: ${theme.colors.modes.light.error.main.color};
+    border-color: ${theme.colors.error.main.color};
     & + span {
-      color: ${theme.colors.modes.light.error.main.color};
+      color: ${theme.colors.error.main.color};
       font-size: 11px;
     }
   `}
@@ -36,13 +37,16 @@ export default function TextField({
   value,
   error,
   isTouched,
+  children,
   ...props
 }) {
   const hasError = Boolean(error);
   const isFieldInvalid = hasError && isTouched;
 
   return (
-    <InputWrapper>
+    <InputWrapper
+      {...props}
+    >
       <Input
         type="text"
         placeholder={placeholder}
@@ -52,10 +56,11 @@ export default function TextField({
         isFieldInvalid={isFieldInvalid}
         {...props}
       />
+      {children}
       { isFieldInvalid && (
       <Text
         variant="paragraph1"
-        color="modes.light.error.main"
+        color="error.main"
         role="alert"
       >
         {error}
@@ -68,13 +73,15 @@ export default function TextField({
 TextField.defaultProps = {
   error: '',
   isTouched: false,
+  children: null,
 };
 
 TextField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
   error: PropTypes.string,
   isTouched: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };

@@ -3,27 +3,36 @@ import { HttpClient } from '../../infra/http/HttpClient';
 import { authService } from '../auth/authService';
 
 const BASE_URL = isStagingEnv
+  // Back-end de DEV
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
-  : 'https://instalura-api-git-master-omariosouto.vercel.app';
+  // Back-end de PROD
+  : 'https://instalura-api-omariosouto.vercel.app';
 
 export const userService = {
-  async getProfilePage(ctx) {
-    const url = `${BASE_URL}/api/users/posts`;
+  async getProfilePage(ctx, HttpClientModule = HttpClient, parseCookiesModule) {
     try {
-      const token = await authService(ctx).getToken();
-      const response = await HttpClient(url, {
+      const url = `${BASE_URL}/api/users/posts`;
+      const token = await authService(ctx, parseCookiesModule).getToken();
+
+      if (!token) return {};
+
+      const response = await HttpClientModule(url, {
         headers: {
-          authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
+
       return {
-        user: {
-          totalLikes: 100,
+        userInfo: {
+          bio: 'A wholesome person responsible for the best movies ever.',
+          totalPosts: 234,
+          totalFollowing: 22000,
+          totalFollowers: 134000,
         },
         posts: response.data,
       };
     } catch (err) {
-      throw new Error('Não conseguimos pegar os posts');
+      throw new Error('Não conseguimos pegar os dados');
     }
   },
 };

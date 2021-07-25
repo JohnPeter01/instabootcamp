@@ -1,44 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Logo } from '../../../theme/Logo';
-import { Text } from '../../foundation/Text';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';
+import Link from '../Link';
+import { TabBar } from '../TabBar';
+import { Grid } from '../../foundation/Layout/Grid';
 
-/*
-  Padrão criar uma pasta com o nome do componente e dentro dela fica o index.js com a implementação.
-*/
+const links = [
+  {
+    texto: 'Home',
+    url: '/',
+  },
+  {
+    texto: 'Perguntas frequentes',
+    url: '/faq',
+  },
+  {
+    texto: 'Sobre',
+    url: '/sobre',
+  },
+];
 
-export default function Menu({ onCadastrarClick }) {
+export default function Menu({ onCadastrarClick, hasActiveSession }) {
+  if (hasActiveSession) {
+    return (
+      <MenuWrapper hasActiveSession={hasActiveSession}>
+        <Grid.Col
+          value={{
+            xs: 12,
+            md: 2,
+          }}
+          offset={{
+            xs: 0,
+            md: 1,
+          }}
+        >
+          <MenuWrapper.LeftSide hasActiveSession={hasActiveSession}>
+            <Logo />
+          </MenuWrapper.LeftSide>
+        </Grid.Col>
+        <Grid.Col
+          value={{
+            md: 3,
+          }}
+          offset={{
+            md: 5,
+          }}
+        >
+          <MenuWrapper.RightSide>
+            <TabBar />
+          </MenuWrapper.RightSide>
+        </Grid.Col>
+      </MenuWrapper>
+    );
+  }
+
   return (
     <MenuWrapper>
       <MenuWrapper.LeftSide>
-        {' '}
-        {/* MenuWrapper.LeftSide */}
         <Logo />
       </MenuWrapper.LeftSide>
-      <MenuWrapper.CentralSide as="ul">
-        {' '}
-        {/* MenuWrapper.CentralSide */}
-        {[
-          { url: '/', name: 'Home' },
-          { url: '/faq', name: 'Perguntas Frequentes' },
-          { url: '/sobre', name: 'Sobre' },
-        ].map((link) => (
+      <MenuWrapper.CentralSide>
+        {links.map((link) => (
           <li key={link.url}>
-            <Text variant="smallestException" tag="a" href={link.url}>
-              {link.name}
-            </Text>
+            <Link href={link.url}>
+              {link.texto}
+            </Link>
           </li>
         ))}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
-        {' '}
-        {/* MenuWrapper.RightSide */}
-        <Button type="button" ghost variant="light.secondary.main" href="/app/login">
+        <Button ghost variant="secondary.main" href="/app/login">
           Entrar
         </Button>
-        <Button type="button" variant="light.primary.main" onClick={onCadastrarClick}>
+        <Button variant="primary.main" onClick={onCadastrarClick}>
           Cadastrar
         </Button>
       </MenuWrapper.RightSide>
@@ -48,4 +84,5 @@ export default function Menu({ onCadastrarClick }) {
 
 Menu.propTypes = {
   onCadastrarClick: PropTypes.func.isRequired,
+  hasActiveSession: PropTypes.bool.isRequired,
 };

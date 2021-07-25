@@ -1,84 +1,79 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable linebreak-style */
 import React from 'react';
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
+import Link from '../Link';
 import { TextStyleVariants } from '../../foundation/Text';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { propToStyle } from '../../../theme/Utils/propToStyle';
-import Link from '../Link';
-
-/*
-    Temos aqui um modelo dinamico tanto da
-    flexibilização da propriedade ghost (Fundo Transparente),
-    quanto da cor utilizada, deixando mais componentizado cada propriedade,
-    ou seja podendo,combinar de forma mais dinamica cor e fundo.
-*/
 
 const ButtonGhost = css`
-  color: ${({ theme, variant }) => get(theme, `colors.modes.${variant}.color`)};
+  color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
   background-color: transparent;
 `;
 
 const ButtonDefault = css`
-  color: ${({ theme, variant }) => get(theme, `colors.modes.${variant}.contrastText`)};
-  background-color: ${({ theme, variant }) => get(theme, `colors.modes.${variant}.color`)};
+  color: ${({ theme, variant }) => get(theme, `colors.${variant}.contrastText`)};
+  background-color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
 `;
 
 const ButtonWrapper = styled.button`
-    border: 0;
-    cursor: pointer;
-    padding: 12px 26px;
-    font-weight: bold;
-    opacity: 1;
-    /*
-        As propriedades abaixo elas são retiradas do objeto contifo /src/theme
-        Essa variavel é provida de forma global no _app.js
-    */
-
+  border: 0;
+  cursor: pointer;
+  padding: 12px 26px;
+  font-weight: bold;
+  opacity: 1;
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};
 
-    /*
-        Esse if é aplicado a cada botão asplicando de forma dinamica a propriedade ghost 
-        juntamente com a corpassada no objeto.
-    */
-
   ${breakpointsMedia({
     xs: css`
+      /* All devices */
       ${TextStyleVariants.smallestException}
     `,
     md: css`
+      /* From md breakpoint */
       padding: 12px 43px;
       ${TextStyleVariants.paragraph1}
     `,
   })}
 
-&:disabled {
-    cursor: not-allowed;
-    opacity: .2;
+  // Confere qual é o tipo de botão para estilizar adequadamente
+  ${(props) => {
+    if (props.ghost) {
+      return ButtonGhost;
+    }
+    return ButtonDefault;
+  }};
+
+  &:hover,
+  &:focus {
+    opacity: .5;
   }
+
+  &:disabled {
+    opacity: .2;
+    cursor: not-allowed;
+  }
+
   ${({ fullWidth }) => fullWidth && css`
     width: 100%;
   `};
 
   ${propToStyle('margin')}
   ${propToStyle('display')}
-
-  ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
-  &:hover,
-  &:focus {
-    opacity: .5;
-  }
 `;
 
 export function Button({ href, children, ...props }) {
-  const hasHerf = Boolean(href);
-  const tag = hasHerf ? Link : 'button';
+  const hasHref = Boolean(href);
+  const tag = hasHref ? Link : 'button';
+
   return (
     <ButtonWrapper
       as={tag}
       href={href}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}
@@ -87,7 +82,7 @@ export function Button({ href, children, ...props }) {
 }
 
 Button.defaultProps = {
-  href: undefined,
+  href: null,
 };
 
 Button.propTypes = {

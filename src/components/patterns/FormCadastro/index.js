@@ -125,7 +125,7 @@ function FormContent() {
       <Button
         type="submit"
         disabled={isFormInvalid}
-        variant="light.primary.main"
+        variant="primary.main"
         fullWidth
       >
         Cadastrar

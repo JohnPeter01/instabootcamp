@@ -1,41 +1,45 @@
-/* eslint-disable consistent-return */
+/* eslint-disable react/prop-types */
 import React from 'react';
+import FeedScreen from '../../src/components/screens/FeedScreen';
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 import { authService } from '../../src/services/auth/authService';
-import { userService } from '../../src/services/user/userService';
 
-export default function ProfilePage(props) {
-  return (
-    <div>
-      Página de Profile!
-      <pre>
-        {JSON.stringify(props, null, 4)}
-      </pre>
-      <img src="https://media.giphy.com/media/bn0zlGb4LOyo8/giphy.gif" alt="Nicolas Cage" />
-    </div>
-  );
+function FeedPage({ user }) {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <FeedScreen user={user} />;
 }
+
+export default websitePageHOC(FeedPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'feed',
+    },
+    menuProps: {
+      display: true,
+      hasActiveSession: true,
+    },
+  },
+});
 
 export async function getServerSideProps(ctx) {
   const auth = authService(ctx);
+
   const hasActiveSession = await auth.hasActiveSession();
 
   if (hasActiveSession) {
     const session = await auth.getSession();
-    const profilePage = await userService.getProfilePage(ctx);
+
     return {
       props: {
         user: {
           ...session,
-          ...profilePage.user,
         },
-        posts: profilePage.posts,
       },
     };
   }
 
   ctx.res.writeHead(307, { location: '/login' });
   ctx.res.end();
-
   return {
     props: {},
   };

@@ -25,6 +25,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'linebreak-style': 0,
     ignoreComments: 0,
+    'import/no-extraneous-dependencies': 0,
+
   },
   overrides: [
     {

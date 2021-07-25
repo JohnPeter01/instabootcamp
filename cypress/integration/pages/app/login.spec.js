@@ -13,7 +13,7 @@ describe('/pages/app/login/', () => {
       .fillLoginForm({ user: 'omariosouto', password: 'senhasegura' })
       .subimitLoginForm();
 
-    cy.url().should('include', '/app/profile');
+    cy.url().should('include', '/app/feed');
 
     cy.wait('@userLogin').then((intercept) => {
       const { token } = intercept.response.body.data;

@@ -5,20 +5,23 @@ import { HttpClient } from '../../infra/http/HttpClient';
 import { isStagingEnv } from '../../infra/env/isStagingEnv';
 
 const BASE_URL = isStagingEnv
+  // Back-end de DEV
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
-  : 'https://instalura-api-git-master-omariosouto.vercel.app';
+  // Back-end de PROD
+  : 'https://instalura-api-omariosouto.vercel.app';
 
-export const authService = (ctx) => {
-  const cookies = parseCookies(ctx);
+export function authService(ctx, parseCookiesModule = parseCookies) {
+  const cookies = parseCookiesModule(ctx);
   const token = cookies[LOGIN_COOKIE_APP_TOKEN];
 
   return {
     async getToken() {
       return token;
     },
+    async hasActiveSession(HttpClientModule = HttpClient) {
+      if (!token) return false;
 
-    async hasActiveSession() {
-      return HttpClient(`${BASE_URL}/api/auth`, {
+      return HttpClientModule(`${BASE_URL}/api/auth`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -28,7 +31,7 @@ export const authService = (ctx) => {
           if (!data.authenticated) {
             loginService.logout(ctx);
           }
-
+          // data.authenticated ? true : false
           return data.authenticated;
         })
         .catch(() => {
@@ -36,10 +39,11 @@ export const authService = (ctx) => {
           return false;
         });
     },
+    async getSession(JWTDecoder = jwt.decode) {
+      if (!token) return {};
 
-    async getSession() {
-      const session = jwt.decode(token);
+      const session = JWTDecoder(token);
       return session.user;
     },
   };
-};
+}
