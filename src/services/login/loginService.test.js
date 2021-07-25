@@ -44,7 +44,7 @@ describe('loginService', () => {
           setCookieModule,
           httpClientModuleError))
             .rejects
-            .toThrow('Failed to Login');
+            .toThrow('Falha ao Logar');
         });
       });
     });
