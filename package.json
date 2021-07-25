@@ -38,13 +38,13 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^12.1.4",
     "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.0.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/react-hooks": "^5.1.1",
-    "babel-plugin-styled-components": "^1.8.0",
-    "cypress": "^7.1.0",
+    "cypress": "^8.0.0",
+    "babel-plugin-styled-components": "^1.13.2",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -55,7 +55,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "jest-canvas-mock": "^2.3.1",
-    "jest-styled-components": "^7.0.4",
+    "jest-styled-components": "^7.0.5",
     "start-server-and-test": "^1.12.1"
   },
   "husky": {
