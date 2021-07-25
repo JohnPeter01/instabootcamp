@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Box } from '../../foundation/Layout/Box';
 import { PostNav } from './NavPost';
 import { PostComments } from './CommentPost';
+import { PostActions } from '../Post/ActionPost';
+import { PostImage } from './ImagePost';
 import { breakpointsMedia } from '../../../theme/Utils/breakpointsMedia';
 import { useLikes } from '../../../infra/hooks/useLike';
-import { PostImage } from './ImagePost';
-import { PostActions } from './ActionPost';
 
 const PostWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background.light.color};
