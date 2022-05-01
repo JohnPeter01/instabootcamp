@@ -40,7 +40,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^12.1.4",
     "@commitlint/cli": "^12.1.4",
-    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^11.2.6",
     "@testing-library/react-hooks": "^5.1.1",
     "cypress": "^8.0.0",
